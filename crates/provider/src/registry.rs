@@ -1,7 +1,7 @@
 use crate::Provider;
 use crabtalk_core::{Error, GatewayConfig, ProviderKind};
 use rand::Rng;
-use std::collections::HashMap;
+use std::{collections::HashMap, time::Duration};
 
 /// A provider entry with its routing weight and retry config.
 #[derive(Debug, Clone)]
@@ -9,6 +9,7 @@ pub struct Deployment {
     pub provider: Provider,
     pub weight: u16,
     pub max_retries: u32,
+    pub timeout: Duration,
 }
 
 /// Maps model names to weighted provider lists for routing.
@@ -56,9 +57,33 @@ impl ProviderRegistry {
                         api_key: provider_config.api_key.clone(),
                     }
                 }
+                #[cfg(feature = "provider-bedrock")]
+                ProviderKind::Bedrock => {
+                    let region = provider_config.region.clone().ok_or_else(|| {
+                        Error::Config(format!(
+                            "provider '{provider_name}' (bedrock) requires a region",
+                        ))
+                    })?;
+                    let access_key = provider_config.access_key.clone().ok_or_else(|| {
+                        Error::Config(format!(
+                            "provider '{provider_name}' (bedrock) requires an access_key",
+                        ))
+                    })?;
+                    let secret_key = provider_config.secret_key.clone().ok_or_else(|| {
+                        Error::Config(format!(
+                            "provider '{provider_name}' (bedrock) requires a secret_key",
+                        ))
+                    })?;
+                    Provider::Bedrock {
+                        region,
+                        access_key,
+                        secret_key,
+                    }
+                }
+                #[cfg(not(feature = "provider-bedrock"))]
                 ProviderKind::Bedrock => {
                     return Err(Error::Config(format!(
-                        "provider '{provider_name}' (bedrock) is not yet supported",
+                        "provider '{provider_name}' (bedrock) requires the 'provider-bedrock' feature",
                     )));
                 }
                 ProviderKind::Ollama => {
@@ -94,6 +119,7 @@ impl ProviderRegistry {
                 provider,
                 weight: provider_config.weight,
                 max_retries: provider_config.max_retries,
+                timeout: Duration::from_secs(provider_config.timeout),
             };
             for model_name in &provider_config.models {
                 providers

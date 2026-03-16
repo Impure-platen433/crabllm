@@ -9,13 +9,21 @@ keywords.workspace = true
 categories.workspace = true
 readme = "README.md"
 
+[features]
+provider-bedrock = ["hmac", "sha2"]
+
 [dependencies]
 crabtalk-core.workspace = true
 
 # crates-io
+bytes.workspace = true
 futures.workspace = true
 rand.workspace = true
 reqwest.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 tokio.workspace = true
+
+# optional (bedrock)
+hmac = { workspace = true, optional = true }
+sha2 = { workspace = true, optional = true }
